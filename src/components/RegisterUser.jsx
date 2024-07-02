@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './css/RegisterUse.css'; // Arquivo de estilos específicos da LandingPage
 
 const RegisterUser = () => {
     const [fullName, setFullName] = useState('');
@@ -50,7 +51,8 @@ const RegisterUser = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="form-container" onSubmit={handleSubmit}>
+            <h2>Cadastro</h2>
             <div>
                 <label>Nome Completo:</label>
                 <input type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} required />

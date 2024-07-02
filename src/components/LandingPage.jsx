@@ -4,6 +4,8 @@ import Carousel from './Carousel';
 import Servicos from './Servicos'; // Importando o componente Servicos
 import BuyPackage from './Buypackage'; // Importando o componente BuyPackage
 import Contato from './Contato';
+import RegisterUser from './RegisterUser';
+import LoginUser from './LoginUser';
 import './css/LandingPage.css'; // Arquivo de estilos específicos da LandingPage
 
 const LandingPage = () => {
@@ -28,9 +30,13 @@ const LandingPage = () => {
         {/* Seção de Compra de Pacote */}
         <BuyPackage />
       </section>
-
+      <section id="cadastro" className="section">
+        <RegisterUser/>
+      </section>
+      <section id="Login" className="section">
+        <LoginUser/>
+      </section>
       <section id="contact" className="section">
-        {/* Seção de Contato */}
         <Contato />
       </section>
 

@@ -1,0 +1,27 @@
+/* Contato.css */
+
+.contato-container {
+    background-color: #ffffff; /* Fundo branco */
+    padding: 2rem;
+    margin: 2rem auto;
+    width: 100%; /* Ocupa toda a largura disponível */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box; /* Mantém o padding dentro da largura especificada */
+  }
+  
+  .contato-container h2 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .contato-container p {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .contato-container p:last-child {
+    margin-bottom: 0;
+  }
+  

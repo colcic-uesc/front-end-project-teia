@@ -1,0 +1,33 @@
+/* GoToTop.css */
+
+.go-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    background-color: #8b5a2b; /* Cor marrom */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0; /* Começa invisível */
+    z-index: 1000; /* Garante que esteja acima de outros elementos */
+  }
+  
+  .go-to-top.show {
+    opacity: 1; /* Mostra o botão quando visível */
+  }
+  
+  .go-to-top.hide {
+    opacity: 0; /* Esconde o botão quando não visível */
+  }
+  
+  .arrow-icon {
+    width: 20px;
+    height: 20px;
+    fill: #ffffff; /* Cor do ícone branco */
+  }
+  

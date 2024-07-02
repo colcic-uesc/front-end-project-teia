@@ -5,6 +5,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import GoToTop from './components/GoToTop';
 import LandingPage from './components/LandingPage';
+import RegisterUser from './components/RegisterUser';
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
       <LandingPage />
       <Footer />
       <GoToTop /> 
-
+      <RegisterUser/>
     </div>
   );
 }

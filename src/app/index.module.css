@@ -1,0 +1,98 @@
+/* CSS do Header e do Footer */
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+.header {
+    background-color: #333;
+    color: white;
+    padding: 1rem;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+  }
+
+.logo {
+    font-size: 1.5rem;
+  }
+  
+.navLinks {
+    list-style-type: none;
+    display: flex;
+  }
+  
+.navLinks li {
+    margin-right: 20px;
+  }
+  
+.navLinks a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+.navLinks a:hover {
+    color: #ffd700; /* Cor quando o mouse passa por cima */
+  }
+
+.header nav ul {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.header nav ul li {
+    margin-right: 1rem;
+}
+
+.header nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.header nav ul li a:hover {
+    color: #ffc107;
+}
+
+.footer {
+    background-color: #333;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    position: fixed; /* Fixa o footer na tela */
+    bottom: 0; /* Coloca o footer no fundo da tela */
+    width: 100%; /* Garante que o footer ocupe toda a largura */
+  }
+  
+.footer p {
+    margin: 0;
+  }
+  
+.footerLinks {
+    list-style: none;
+    display: flex;
+  }
+  
+.footerLinks li {
+    margin-left: 2rem;
+  }
+  
+.footerLinks a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+  }
+  
+.footerLinks a:hover {
+    text-decoration: underline;
+  }

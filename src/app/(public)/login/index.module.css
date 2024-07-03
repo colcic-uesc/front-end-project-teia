@@ -1,0 +1,76 @@
+/* LoginUser.css */
+
+.loginFormContainer {
+    background-color: #ffffff; /* Fundo branco */
+    padding: 2rem;
+    margin: 2rem auto;
+    width: 40%; /* Ocupa toda a largura disponível */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box; /* Mantém o padding dentro da largura especificada */
+}
+
+.loginFormSection {
+    width: 100%; /* Faz com que a seção ocupe toda a largura da tela */
+    height: 100vh;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center; /* Centraliza o formulário horizontalmente */
+    align-items: center; /* Centraliza o formulário verticalmente */
+    gap: 0.25rem;
+}
+
+.loginFormSection h2 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+.loginFormContainer h2 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.loginFormContainer div {
+    margin-bottom: 1rem;
+}
+
+.loginFormContainer label {
+    display: block;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.loginFormContainer input {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.loginFormContainer button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.loginFormContainer button:hover {
+    background-color: #0056b3;
+}
+
+.loginFormContainer button:focus {
+    outline: none;
+}
+
+@media (max-width: 600px) {
+    .loginFormContainer {
+        padding: 1.5rem;
+        margin: 1.5rem auto;
+    }
+}

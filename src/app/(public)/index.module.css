@@ -1,0 +1,30 @@
+/* LandingPage.css */
+
+.landingPage {
+    font-family: Arial, sans-serif;
+  }
+  
+  
+.content {
+    padding-top: 4rem; /* Ajuste para compensar o header fixo */
+}
+
+.section {
+    background-color: black;
+    padding: 2rem 0;
+}
+
+.sectionContent {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.sectionContent h1 {
+    font-size: 2rem;
+}
+
+.sectionContent p {
+    font-size: 1rem;
+    line-height: 1.6;
+}

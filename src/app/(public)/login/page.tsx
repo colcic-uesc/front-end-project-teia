@@ -1,13 +1,18 @@
 'use client'
-import React from 'react'
+import React, { useContext } from 'react'
 import styles from './index.module.css' // Arquivo de estilos específicos
 import { type loginTypeProps, loginValidation } from '@/validations/login'
-import axios from 'axios'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
+import toast from 'react-hot-toast'
+import { AuthContext } from '@/provider'
+import { useRouter } from 'next/navigation'
+// import SignIn from '@/provider/signIn'
 
 const LoginUser = () => {
+  const router = useRouter()
+  const { SignIn } = useContext(AuthContext)
   const { handleSubmit, register, formState: { errors } } = useForm<loginTypeProps>(
     {
       criteriaMode: 'all',
@@ -19,25 +24,17 @@ const LoginUser = () => {
       }
     })
 
-  const handleForm = async (data: loginTypeProps) => {
+  const handleForm = async ({ username, password }: loginTypeProps) => {
     try {
-      const response = await axios.post('http://localhost:5088/login', {
-        user_Name: data.username,
-        password: data.password
-      }, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }
-      )
-      console.log(response)
-      if (response.status) {
-        console.log('Login bem-sucedido!')
-        // Redirecionar ou realizar outras ações após o login bem-sucedido
-      }
-    } catch (err: any) {
-      console.error('Erro:', err.response.status)
-      console.log('Erro ao fazer login')
+      const status = await SignIn({ username, password })
+      console.log(status)
+      toast.success('Login bem-sucedido!')
+      setTimeout(() => {
+        router.push('/profile')
+      }, 1000)
+    } catch (err) {
+      console.log('Status Error:', status)
+      toast.error('Erro ao fazer login')
     }
   }
 

@@ -4,6 +4,8 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import Header from './header'
 import Footer from './footer'
+import { Toaster } from 'react-hot-toast'
+import AuthProvider from '@/provider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,13 +17,16 @@ export const metadata: Metadata = {
 export default function RootLayout ({
   children
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactElement
 }>) {
   return (
     <html lang="pt-BR">
       <body className={inter.className}>
+        <Toaster />
         <Header />
-        {children}
+          <AuthProvider>
+            {children}
+          </AuthProvider>
         <Footer />
         </body>
     </html>

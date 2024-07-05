@@ -1,10 +1,11 @@
-// Header.js
-
-import React from 'react'
+'use client'
+import React, { useContext } from 'react'
 import styles from './index.module.css' // Importe o arquivo de estilos do cabeçalho
 import Link from 'next/link'
+import { AuthContext } from '@/provider'
 
 const Header = () => {
+  const { user } = useContext(AuthContext)
   return (
     <header className={styles.header}>
       <div className={styles.container}>
@@ -12,13 +13,9 @@ const Header = () => {
         <nav>
           <ul className={styles.navLinks}>
             <li><Link href='/'>Início</Link></li>
-            <li><a href="/#destinations">Destinos</a></li>
-            <li><a href="/#services">Serviços</a></li>
-            <li><a href="/#buy-package">Comprar seu pacote</a></li>
-            <li><a href="/cadastro">Cadastro</a></li>
-            <li><a href="/login">Login</a></li>
+            <li><Link href="/#destinations">Destinos</Link></li>
+            {user?.role === 'client' && <li><Link href='/hub/packages'>Comprar seu pacote</Link></li>}
             <li><a href="/#contact">Contato</a></li>
-
           </ul>
         </nav>
       </div>

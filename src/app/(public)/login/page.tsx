@@ -6,8 +6,9 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
 import toast from 'react-hot-toast'
-import { AuthContext } from '@/provider'
+import { AuthContext, type responseLogin } from '@/provider'
 import { useRouter } from 'next/navigation'
+import { statusCode } from '@/enums/http'
 // import SignIn from '@/provider/signIn'
 
 const LoginUser = () => {
@@ -26,14 +27,18 @@ const LoginUser = () => {
 
   const handleForm = async ({ username, password }: loginTypeProps) => {
     try {
-      const status = await SignIn({ username, password })
-      console.log(status)
-      toast.success('Login bem-sucedido!')
-      setTimeout(() => {
-        router.push('/profile')
-      }, 1000)
+      const { status, role }: responseLogin = await SignIn({ username, password })
+
+      if (status === statusCode.OK) {
+        toast.success('Login bem-sucedido!')
+        const url = role === 'admin' ? '/admin/hub' : '/hub'
+
+        setTimeout(() => {
+          router.push(url)
+        }, 1000)
+      }
     } catch (err) {
-      console.log('Status Error:', status)
+      console.log('Status Error:', err)
       toast.error('Erro ao fazer login')
     }
   }

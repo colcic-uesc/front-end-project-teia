@@ -1,41 +1,41 @@
-"use client";
+'use client'
 
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
 // Definindo os tipos para os dados do pacote e comentários do usuário
 interface User {
-  user_Name: string;
+  user_Name: string
 }
 
 interface Comment {
-  comment: string;
-  comment_Date: string;
-  user?: User;
+  comment: string
+  comment_Date: string
+  user?: User
 }
 
 interface TravelPackage {
-  package_Details: string;
-  cost: number;
-  country: string;
-  region: string;
-  package_Name: string;
-  travel_Date: string;
-  userFeedbacks?: Comment[];
+  package_Details: string
+  cost: number
+  country: string
+  region: string
+  package_Name: string
+  travel_Date: string
+  userFeedbacks?: Comment[]
 }
 
 const PackagesList: React.FC = () => {
-  const [packages, setPackages] = useState<TravelPackage[]>([]);
+  const [packages, setPackages] = useState<TravelPackage[]>([])
 
   useEffect(() => {
     axios.get('http://localhost:5088/travelpackages')
       .then(response => {
-        setPackages(response.data);
+        setPackages(response.data)
       })
       .catch(error => {
-        console.error('Erro ao buscar os pacotes de viagem!', error);
-      });
-  }, []);
+        console.error('Erro ao buscar os pacotes de viagem!', error)
+      })
+  }, [])
 
   return (
     <div>
@@ -62,7 +62,8 @@ const PackagesList: React.FC = () => {
               <td>{pkg.package_Name}</td>
               <td>{new Date(pkg.travel_Date).toLocaleDateString()}</td>
               <td>
-                {pkg.userFeedbacks && pkg.userFeedbacks.length > 0 ? (
+                {pkg.userFeedbacks && pkg.userFeedbacks.length > 0
+                  ? (
                   <ul>
                     {pkg.userFeedbacks.map((comment, idx) => (
                       <li key={idx}>
@@ -72,16 +73,17 @@ const PackagesList: React.FC = () => {
                       </li>
                     ))}
                   </ul>
-                ) : (
+                    )
+                  : (
                   <p>Sem comentários</p>
-                )}
+                    )}
               </td>
             </tr>
           ))}
         </tbody>
       </table>
     </div>
-  );
-};
+  )
+}
 
-export default PackagesList;
+export default PackagesList

@@ -1,35 +1,50 @@
 'use client'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './index.module.css' // Arquivo de estilos específicos
 import axios from 'axios' // Importando axios para fazer requisições HTTP
 
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { type packageTypeProps, packageValidation } from '@/validations/package'
+import { getCookies } from 'cookies-next'
 
+type travelPackageProps = {
+  travel_Package_Id: string
+  package_Details: string
+  cost: number
+  country: string
+  region: string
+  package_Name: string
+  travel_Date: string
+  users: []
+  userFeedbacks: []
+  suppliers: []
+}
 
-  const pacotes = [
-    { destino: 'Atenas', preco: 1000 },
-    { destino: 'Itacaré', preco: 800 },
-    { destino: 'Veneza', preco: 1200 }
-  ]
-
-
- export default function BuyPackage(){ 
+export default function BuyPackage () {
+  const [packageDB, setpackageDB] = useState<travelPackageProps[]>([])
   const { handleSubmit, register, formState: { errors } } = useForm<packageTypeProps>({
-      criteriaMode: 'all',
-      mode: 'all',
-      resolver: zodResolver(packageValidation),
-      defaultValues: {
-        birthDay: '',
-        email: '',
-        cpf: '',
-        fullname: '',
-        password: '',
-        role: '',
-        username: ''
+    criteriaMode: 'all',
+    mode: 'all',
+    resolver: zodResolver(packageValidation),
+    defaultValues: {
+      birthDay: '',
+      email: '',
+      cpf: '',
+      fullname: '',
+      package: ''
+    }
+  })
+
+  useEffect(() => {
+    void axios.get('http://localhost:5088/travelpackages', {
+      headers: {
+        Authorization: `Bearer ${getCookies('token').token}`
       }
+    }).then(res => {
+      setpackageDB(res.data)
     })
+  })
 
   // Handler para enviar o formulário
   const handleForm = async (data: packageTypeProps) => {
@@ -65,34 +80,22 @@ import { type packageTypeProps, packageValidation } from '@/validations/package'
         </div>
 
         <div className={styles.formGroup}>
-          <label htmlFor="password">Senha:</label>
-          <input type="password" id="password" {...register('password')} />
-          {errors.password?.message && (<p className='text-red-500'>{errors.password.message}</p>)}
-        </div>
-
-        <div className={styles.formGroup}>
           <label htmlFor="email">Email:</label>
           <input type="email" id="email" {...register('email')} />
           {errors.email?.message && (<p className='text-red-500'>{errors.email.message}</p>)}
         </div>
 
         <div className={styles.formGroup}>
-          <label htmlFor="user_name">Nome de Usuário:</label>
-          <input type="text" id="user_name" {...register('username')} />
-          {errors.username?.message && (<p className='text-red-500'>{errors.username.message}</p>)}
-        </div>
-
-        <div className={styles.formGroup}>
           <label htmlFor="role">Pacote:</label>
-          <select id="role" {...register('role')}>
+          <select id="role" {...register('package')}>
             <option value="">Selecione o pacote</option>
-            {pacotes.map((pacote, index) => (
-              <option key={index} value={pacote.destino}>
-                {pacote.destino} - R$ {pacote.preco}
+            {packageDB.map((pacote, index) => (
+              <option key={index} value={pacote.package_Name}>
+                {pacote.country} - R$ {pacote.cost}
               </option>
             ))}
           </select>
-          {errors.role?.message && (<p className='text-red-500'>{errors.role.message}</p>)}
+          {errors.package?.message && (<p className='text-red-500'>{errors.package.message}</p>)}
         </div>
         <button type="submit">Enviar</button>
       </form>

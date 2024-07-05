@@ -10,10 +10,16 @@ type userProps = {
   role: string
 }
 
-type AuthContextProps = {
+export type responseLogin = {
+  status: number
+  role: string
+  uuid: string
+}
+
+export type AuthContextProps = {
   isAuth: boolean
   user: userProps | null
-  SignIn: (data: loginTypeProps) => Promise<number>
+  SignIn: (data: loginTypeProps) => Promise<responseLogin>
 }
 
 // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
@@ -36,7 +42,7 @@ export default function AuthProvider ({ children }: { children: React.ReactEleme
       console.log('provider', response)
       setUser(response.data.user)
       setCookie('token', response.data.token)
-      return response.status
+      return { status: response.status, role: response.data.user.role, uuid: response.data.user.user_Id }
     } catch (err: any) {
       return err.response.status
     }
